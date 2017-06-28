@@ -21,7 +21,7 @@ class EditProfileForm(FlaskForm):
 
 
 class EditProfileAdminForm(FlaskForm):
-    email=StringField(u'邮箱',validators=[DataRequired(),Length(1,64),Email])
+    email=StringField(u'邮箱',validators=[DataRequired(),Length(1,64),Email()])
     username=StringField(u'用户名',validators=[DataRequired(),Length(1,64),Regexp('^[A-Za-z0-9_.]*$',0,
                                                                                'Usernames must have only letters,'
                                                                                'numbers,dots or underscores'
