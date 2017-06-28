@@ -22,10 +22,7 @@ class EditProfileForm(FlaskForm):
 
 class EditProfileAdminForm(FlaskForm):
     email=StringField(u'邮箱',validators=[DataRequired(),Length(1,64),Email()])
-    username=StringField(u'用户名',validators=[DataRequired(),Length(1,64),Regexp('^[A-Za-z0-9_.]*$',0,
-                                                                               'Usernames must have only letters,'
-                                                                               'numbers,dots or underscores'
-                                                                               )])
+    username=StringField(u'用户名',validators=[DataRequired(),Length(1,64)])
     confirmed=BooleanField(u'邮箱是否验证')
     role=SelectField(u'角色',coerce=int)
     name=StringField(u'真实姓名',validators=[Length(0,64)])

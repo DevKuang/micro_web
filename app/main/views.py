@@ -73,7 +73,7 @@ def edit_profile_admin(id):
         user.location = form.location.data
         user.about_me = form.about_me.data
         db.session.add(user)
-        flash('The profile has been updated.')
+        flash(u'你已经成功更改资料')
         return redirect(url_for('.user', username=user.username))
     form.email.data = user.email
     form.username.data = user.username
@@ -173,7 +173,7 @@ def followers(username):
         error_out=False)
     follows=[{'user':item.follower,'timestamp':item.timestamp}
               for item in pagination.items]
-    return render_template('followers.html',user=user,title="Followers of",
+    return render_template('followers.html',user=user,title=u"的粉丝",
                            endpiont='.followers',pagination=pagination,
                            follows=follows)
 
@@ -191,7 +191,7 @@ def followed_by(username):
     )
     follows=[{'user':item.followed,'timestamp':item.timestamp}
              for item in pagination.items]
-    return  render_template('followers.html',user=user,title="Followed by",
+    return  render_template('followers.html',user=user,title=u"关注的用户",
                             endpiont='.followed_by',pagination=pagination,
                             follows=follows)
 

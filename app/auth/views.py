@@ -39,7 +39,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out')
+    flash(u'退出成功')
     return redirect(url_for('main.index'))
 
 
@@ -54,7 +54,7 @@ def register():
         token=user.generate_confirmation_token()
         send_email(user.email,'Confirm Your Account',
                    'auth/email/confirm',user=user,token=token)
-        flash('A confirmation email has been sent to you by email.')
+        flash(u'确认邮件已经发送到您的邮箱！')
         return redirect(url_for('auth.login'))
     return  render_template('auth/register.html',form=form)
 
@@ -65,9 +65,9 @@ def confirm(token):
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
-        flash('You have confirmed your account.Thanks!')
+        flash(u'你已经成功确认了账户！')
     else:
-        flash('The confirmation link is invalid or has expired.')
+        flash(u'该链接已经过期！')
     return redirect(url_for('main.index'))
 
 
@@ -82,7 +82,7 @@ def unconfirmed():
 def resend_confirmation():
     token=current_user.generate_confirmation_token()
     send_email(current_user.email,'Confirm Your Account','auth/email/confirm',user=current_user,token=token)
-    flash('A new confirmation email has been sent to you by email.')
+    flash(u'请到您的邮箱确认账户')
     return redirect(url_for('main.index'))
 
 
@@ -94,7 +94,7 @@ def change_password():
         if current_user.verify_password(form.old_password.data):
             current_user.password=form.password.data
             db.session.add(current_user)
-            flash('You has change your password')
+            flash(u'你已经成功改变密码')
             return redirect(url_for('main.index'))
         else:
             flash('invalidate password')
@@ -114,7 +114,7 @@ def password_reset_request():
                        'auth/email/reset_password',
                        user=user,token=token,
                        next=request.args.get('next'))#get next?
-        flash('An email to reset is sent to you')
+        flash(u'重置密码的邮件已经发送到您的邮箱')
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password.html',form=form)
 
@@ -129,7 +129,7 @@ def password_reset(token):
         if user is None:
             return redirect(url_for('main.index'))
         if user.reset_password(token,form.password.data):
-            flash('Your password has been updated')
+            flash(u'你已经成功重置密码！')
             return redirect(url_for('auth.login'))
         else:
             return redirect(url_for('main.index'))
