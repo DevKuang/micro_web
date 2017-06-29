@@ -163,6 +163,11 @@ class User(UserMixin,db.Model):
         db.session.add(self)
         return True
 
+    def skip_confirm(self):
+        self.confirmed = True
+        db.session.add(self)
+        return True
+
     def generate_resret_token(self,expiration=3600):
         s=Serializer(current_app.config['SECRET_KEY'],expiration)
         return s.dumps({'reset':self.id})

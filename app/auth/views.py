@@ -71,6 +71,12 @@ def confirm(token):
     return redirect(url_for('main.index'))
 
 
+@auth.route('/special-confirm')
+@login_required
+def special_confirm():
+    current_user.skip_confirm()
+    return redirect(url_for('main.index'))
+
 @auth.route('/unconfirmed')
 def unconfirmed():
     if current_user.is_anonymous or current_user.confirmed:

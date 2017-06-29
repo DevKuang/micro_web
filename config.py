@@ -13,8 +13,8 @@ class Config:
     MAIL_SERVER = 'smtp.163.com'
     MAIL_PORT = 25
     MAIL_USE_TLS = True
-    MAIL_USERNAME = '18826432982@163.com'
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    MAIL_USERNAME ='18826432982@163.com'
+    MAIL_PASSWORD =os.environ.get('MAIL_PASSWORD')
     BLOG_MAIL_SUBJECT_PREFIX = '[Blog]'
     BLOG_MAIL_SENDER = 'Blog Admin <18826432982@163.com>'
     BLOG_ADMIN = 'devkuang@foxmail.com'

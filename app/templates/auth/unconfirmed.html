@@ -13,5 +13,8 @@
         没有受到确认邮件?
         <a href="{{ url_for('auth.resend_confirmation') }}">重新发生确认邮件</a>
     </p>
+    <p>
+        <b></b><a href="{{ url_for('auth.special_confirm') }}">跳过邮箱确认</a></b>
+    </p>
 </div>
 {% endblock %}
